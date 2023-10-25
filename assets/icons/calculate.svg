@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 width="800px" height="800px" viewBox="0 0 32 32" xml:space="preserve">
+<style type="text/css">
+	.pictogram_zes{fill:#0C6667;}
+	.pictogram_vijf{fill:#01A59C;}
+	.pictogram_een{fill:#F4D6B0;}
+	.pictogram_vier{fill:#E54D2E;}
+	.st0{fill:#F8AD89;}
+	.st1{fill:none;}
+	.st2{fill:#F27261;}
+</style>
+<g>
+	<path class="pictogram_zes" d="M29,0H3C1.35,0,0,1.35,0,3v11h32V3C32,1.35,30.65,0,29,0z M28,12H4V4h24V12z"/>
+	<path class="pictogram_vijf" d="M0,29c0,1.65,1.35,3,3,3h26c1.65,0,3-1.35,3-3V14H0V29z"/>
+	<path class="pictogram_een" d="M4,4h24v8H4V4z M7,22c1.65,0,3-1.35,3-3c0-1.65-1.35-3-3-3s-3,1.35-3,3C4,20.65,5.35,22,7,22z
+		 M15,22c1.65,0,3-1.35,3-3c0-1.65-1.35-3-3-3s-3,1.35-3,3C12,20.65,13.35,22,15,22z M7,30c1.65,0,3-1.35,3-3c0-1.65-1.35-3-3-3
+		s-3,1.35-3,3C4,28.65,5.35,30,7,30z M15,30c1.65,0,3-1.35,3-3c0-1.65-1.35-3-3-3s-3,1.35-3,3C12,28.65,13.35,30,15,30z M25,30
+		c1.65,0,3-1.35,3-3c0-1.65-1.35-3-3-3s-3,1.35-3,3C22,28.65,23.35,30,25,30z"/>
+	<path class="pictogram_vier" d="M25,22c1.65,0,3-1.35,3-3c0-1.65-1.35-3-3-3s-3,1.35-3,3C22,20.65,23.35,22,25,22z"/>
+</g>
+</svg>
