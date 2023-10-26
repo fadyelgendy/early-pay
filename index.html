@@ -33,7 +33,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="last_paid">رقم اخر سداد</label>
+            <label for="last_paid"> اخر قسط تم سداده </label>
             <select name="last_paid" id="last_paid">
                 <option value="">--اختر رقم--</option>
             </select>
@@ -69,6 +69,15 @@
             <button type="button" id="setting_button_close">اغلاق</button>
         </div>
     </div>
+
+    <footer>
+        <p>برمجة وتصمبم <a href="https://github.com/fadyelgendy">فادي الجندي</a> - جميع الحقوق محفوطة &copy;
+            <span id="year"></span>
+            <script>
+                document.getElementById('year').innerHTML = new Date().getFullYear();
+            </script>
+        </p>
+    </footer>
     <script src="./assets/js/app.js"></script>
 </body>
 

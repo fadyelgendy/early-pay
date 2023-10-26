@@ -36,7 +36,7 @@ async function loadConfig() {
 function populatePeriodSelect(selectElem) {
     let selected = selectElem.options[selectElem.options.selectedIndex].value;
     last_paid.innerHTML = '';
-    for (let i = (selected / 2) + 1; i <= selected; i++) {
+    for (let i = (selected / 2); i <= selected; i++) {
         let opt = new Option(i, i);
         last_paid.appendChild(opt);
     }
@@ -91,7 +91,7 @@ function renderResult(amount, installment, remains) {
                 <tr>
                     <td>${amount}</td>
                     <td>${installment}</td>
-                    <td>${remains}</td>
+                    <td id="must">${remains}</td>
                 </tr>
             </tbody>
         </table>
