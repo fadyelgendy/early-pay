@@ -1,4 +1,5 @@
 {
     "interest_rate": 21,
-    "early_pay_rate": 5
+    "early_pay_rate": 5,
+    "new_month_start": 27
 }

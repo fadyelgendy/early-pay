@@ -12,6 +12,8 @@ const last_paid = document.getElementById('last_paid');
 const calculate = document.getElementById('calculate');
 const currnet_month_paid = document.getElementById('currnet_month_paid');
 const result = document.getElementById('result');
+const fine = document.getElementById('fine');
+const new_month_start = document.getElementById('new_month_start');
 
 // Load Config file
 async function config() {
@@ -36,7 +38,7 @@ async function loadConfig() {
 function populatePeriodSelect(selectElem) {
     let selected = selectElem.options[selectElem.options.selectedIndex].value;
     last_paid.innerHTML = '';
-    for (let i = (selected / 2); i <= selected; i++) {
+    for (let i = 1; i <= selected; i++) {
         let opt = new Option(i, i);
         last_paid.appendChild(opt);
     }
@@ -78,6 +80,24 @@ function calculateInstallment(total, period) {
     return installments;
 }
 
+// Check if today is equal or greater than 27th
+function isInNewMonth() {
+    let current_date = new Date();
+    return (current_date.getDate() >= parseInt(localStorage.getItem('new_month_start'))) ? true : false;
+}
+
+// Populate new month start select
+function populateNewMonthStart() {
+    new_month_start.innerHTML = '';
+    let target_day = parseInt(localStorage.getItem('new_month_start'));
+
+    for (let i = 1; i <= 31; i++) {
+        let opt = new Option(i, i);
+        if ( i == target_day) opt.setAttribute('selected', true);
+        new_month_start.append(opt);
+    }
+}
+
 // Render Result
 function renderResult(amount, installment, remains) {
     let html = `
@@ -103,6 +123,7 @@ function renderResult(amount, installment, remains) {
 // Stater Funcs
 loadConfig();
 populatePeriodSelect(period);
+populateNewMonthStart();
 
 // Save new Settings
 setting_button_save.addEventListener('click', function () {
@@ -113,6 +134,7 @@ setting_button_save.addEventListener('click', function () {
 
     localStorage.setItem('interest_rate', interest_rate.value);
     localStorage.setItem('early_pay_rate', early_pay_rate.value);
+    localStorage.setItem('new_month_start', new_month_start.options[new_month_start.options.selectedIndex].value);
 
     console.log("Saved Successfully");
 });
@@ -180,28 +202,26 @@ calculate.addEventListener('click', function () {
 
     // Calculate
     let interest_rate_val = localStorage.getItem('interest_rate');
-    let early_pay_rate_val = localStorage.getItem('early_pay_rate');
+    let early_pay_rate_val = localStorage.getItem('early_pay_rate') / 100;
 
     let total_rate = getTotalInterestRate(interest_rate_val, period_val);
 
     let total_amount = parseFloat(amount_val) + parseFloat(amount.value) * total_rate;
     let installments = calculateInstallment(total_amount, period_val);
 
-    let loop = currnet_month_paid.checked == true ? last_paid_val : last_paid_val-1;
+    let loop = isInNewMonth() ? last_paid_val + 1 : last_paid_val;
 
     let remains = 0;
     for (let i = loop; i < installments.length; i++) {
         remains += installments[i];
     }
 
-    let remains_without_interest = remains * getTotalInterestRate(interest_rate_val, period_val);
-    remains = remains - remains_without_interest;
+    let must_paid = remains - (remains * early_pay_rate_val);
+    if (fine.value !== undefined && fine.value !== null && fine.value > 0) {
+        must_paid = must_paid + parseInt(fine.value);
+    }
 
-    let early_pay_amount = remains * (early_pay_rate_val / 100);
-    remains = remains + early_pay_amount;
-
-    remains = currnet_month_paid.checked == true ? remains : remains + installments[loop];
-
-    renderResult(amount.value, installments[loop], Math.round(remains));
+    must_paid = currnet_month_paid.checked == true ? must_paid : must_paid + installments[last_paid_val];
+    renderResult(amount.value, installments[last_paid_val + 1], Math.round(must_paid));
 });
 
